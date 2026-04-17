@@ -5,6 +5,7 @@ import Register from './components/Register'
 import Login from './components/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import AddProduct from './components/Addproduct'
+import Home from './components/Home'
 export default function App() {
   return (
     <BrowserRouter>
