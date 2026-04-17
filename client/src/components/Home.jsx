@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
-
+import { useNavigate } from 'react-router-dom'
 function Home() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate()
     const role = localStorage.getItem("role")
     useEffect(() => {
         fetchProducts();
@@ -22,7 +23,16 @@ function Home() {
     };
 
     const addToCart = async (id) => {
-
+        API.post("/cart/add", { productId: id })
+            .then((res) => {
+                if (res.status == 201) {
+                    alert("Added to cart")
+                    navigate("/cart")
+                }
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     };
 
     return (
